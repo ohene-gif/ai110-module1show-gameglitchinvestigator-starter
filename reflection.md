@@ -14,9 +14,10 @@ Document at least 3 bugs you found. Add rows as needed.
 
 | Input | Expected Behavior | Actual Behavior | Console Output / Error |
 |-------|-------------------|-----------------|------------------------|
-| | | | |
-| | | | |
-| | | | |
+| Guess higher than the secret, such as `60` when the secret is `50` | The game should report that the guess is too high and tell the player to go lower. | The outcome is "Too High," but the hint says "Go HIGHER!" | none |
+| On an even-numbered attempt, guess `9` when the secret is `50` | The game should compare both values numerically and report "Too Low." | The secret is converted to text, so text comparison can report the wrong result, such as "Too High." | none |
+| Submit the first guess in the initial game | The first guess should be counted as attempt 1. | The game starts with `attempts = 1`, so the first submitted guess is counted as attempt 2. | none |
+| Change difficulty to Hard when the Developer Debug Info shows secret `57` | The active secret should be inside the Hard range of `1–50`, or the game should start a new compatible round. | The sidebar shows Hard and range `1–50`, but the active secret remains `57`, outside the displayed range. | none |
 
 ---
 
