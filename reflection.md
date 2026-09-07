@@ -27,7 +27,7 @@ I used GitHub Copilot in VS Code to inspect the workspace, explain the game logi
 
 ## 3. Debugging and testing your fixes
 
-I treated a bug as fixed only when the code path matched the intended behavior and a focused pytest case passed. The final command collected six tests, including winning, too-high, too-low, empty-input, non-numeric-input, and difficulty-range cases, and all six passed. Pycodestyle also reported no issues after the test formatting was corrected. AI helped identify the return-tuple contract and suggest edge cases, but I reviewed the assertions and preserved the starter difficulty values manually.
+I treated a bug as fixed only when the code path matched the intended behavior and a focused pytest case passed. The final command collected eight tests, including winning, too-high, too-low, empty-input, non-numeric-input, negative-input, decimal-input, and difficulty-range cases, and all eight passed. Pycodestyle also reported no issues after the test formatting was corrected. AI helped identify the return-tuple contract and suggest edge cases, but I reviewed the assertions and preserved the starter difficulty values manually.
 
 ---
 
