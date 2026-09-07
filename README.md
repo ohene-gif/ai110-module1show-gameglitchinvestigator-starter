@@ -25,30 +25,40 @@ It wrote the code, ran away, and now the game is unplayable.
 
 ## 📝 Document Your Experience
 
-- [ ] Describe the game's purpose.
-- [ ] Detail which bugs you found.
-- [ ] Explain what fixes you applied.
+- [x] The game is a Streamlit number-guessing game with Easy, Normal, and Hard settings.
+- [x] The original bugs included reversed hints, inconsistent numeric/string comparison, inconsistent initial attempt counting, and difficulty changes that left the active secret outside the displayed range.
+- [x] The fixes move reusable logic into `logic_utils.py`, keep comparisons numeric, synchronize difficulty state, reset New Game state, and add pytest coverage.
 
-## 📸 Demo Walkthrough
+## Demo Walkthrough
 
 Describe your fixed game in numbered steps so a reader can follow along without watching a video:
 
-1. <!-- Describe this step -->
-2. <!-- Describe this step -->
-3. <!-- Describe this step -->
-4. <!-- Describe this step -->
-5. <!-- Add more steps as needed -->
+1. Select a difficulty; the sidebar shows its range and attempt limit.
+2. Enter a guess and submit it; the game records the guess in the Guess History table.
+3. A guess above the secret returns `Too High` and the hint `Go LOWER!`.
+4. A guess below the secret returns `Too Low` and the hint `Go HIGHER!`.
+5. Change difficulty to start a new compatible round, or select New Game to reset attempts, score, status, and history.
+6. Enter the correct number; the game displays the winning message and final score.
 
 **Screenshot** *(optional)*: <!-- Insert a screenshot of your fixed, winning game here -->
 
 ## 🧪 Test Results
 
 ```
-# Paste your pytest output here, e.g.:
-# pytest tests/
-# ========================= X passed in 0.XXs =========================
+> .venv\Scripts\python.exe -m pytest
+============================= test session starts =============================
+platform win32 -- Python 3.13.15, pytest-9.1.1, pluggy-1.6.0
+collected 6 items
+
+tests\test_game_logic.py ......                                          [100%]
+
+============================== 6 passed in 0.03s ==============================
 ```
 
 ## 🚀 Stretch Features
 
-- [ ] [If you choose to complete Challenge 4, describe the Enhanced UI changes here — a screenshot is optional]
+- [x] Advanced edge-case testing: empty and non-numeric input are tested with pytest, and difficulty ranges are tested against the starter settings.
+- [x] Agent Workflow: the AI-assisted multi-file refactor and verification are documented in `ai_interactions.md`.
+- [x] Professional documentation and style: all functions in `logic_utils.py` have docstrings, and pycodestyle output is recorded in `ai_interactions.md`.
+- [x] Enhanced UI: `app.py` displays the active range in the main game and shows a Guess History table in the sidebar.
+- [x] Prompt comparison: two prompting strategies are compared in `ai_interactions.md`.

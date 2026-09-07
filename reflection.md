@@ -4,9 +4,7 @@ Answer each question in 3 to 5 sentences. Be specific and honest about what actu
 
 ## 1. What was broken when you started?
 
-- What did the game look like the first time you ran it?
-- List at least two concrete bugs you noticed at the start  
-  (for example: "the hints were backwards").
+The game displayed a number-guessing interface with difficulty settings, a developer debug panel, and a score. The first run showed that the hint wording was backwards: a too-high guess could say to go higher. The game also behaved inconsistently after changing difficulty because the active secret could remain outside the newly displayed range. The starter tests could not run successfully because `logic_utils.py` contained unimplemented functions.
 
 **Bug Reproduction Log**
 
@@ -23,30 +21,22 @@ Document at least 3 bugs you found. Add rows as needed.
 
 ## 2. How did you use AI as a teammate?
 
-- Which AI tools did you use on this project (for example: ChatGPT, Gemini, Copilot)?
-- Give one example of an AI suggestion that was correct (including what the AI suggested and how you verified the result).
-- Give one example of an AI suggestion that was incorrect or misleading (including what the AI suggested and how you verified the result).
+I used GitHub Copilot in VS Code to inspect the workspace, explain the game logic, plan fixes, and generate pytest coverage. One correct suggestion was to keep the secret as an integer and compare it numerically; after implementing that change, the high/low tests passed and the string-comparison path was removed. One misleading suggestion was to replace the starter attempt limits with `10/7/5`; that changed assignment-provided values without evidence, so I rejected it and preserved Easy `6`, Normal `8`, and Hard `5`. I verified the final behavior with pytest and a code diff review.
 
 ---
 
 ## 3. Debugging and testing your fixes
 
-- How did you decide whether a bug was really fixed?
-- Describe at least one test you ran (manual or using pytest)  
-  and what it showed you about your code.
-- Did AI help you design or understand any tests? How?
+I treated a bug as fixed only when the code path matched the intended behavior and a focused pytest case passed. The final command collected six tests, including winning, too-high, too-low, empty-input, non-numeric-input, and difficulty-range cases, and all six passed. Pycodestyle also reported no issues after the test formatting was corrected. AI helped identify the return-tuple contract and suggest edge cases, but I reviewed the assertions and preserved the starter difficulty values manually.
 
 ---
 
 ## 4. What did you learn about Streamlit and state?
 
-- How would you explain Streamlit "reruns" and session state to a friend who has never used Streamlit?
+Streamlit reruns the script from top to bottom after an interaction such as clicking a button or changing a select box. Ordinary local variables are recreated during each rerun, so values that must survive need to be stored in `st.session_state`. The original game mixed reruns with inconsistent initialization, which made attempts and the secret behave differently between the first game and later games. The repair resets state when the selected difficulty changes and when New Game is pressed.
 
 ---
 
 ## 5. Looking ahead: your developer habits
 
-- What is one habit or strategy from this project that you want to reuse in future labs or projects?
-  - This could be a testing habit, a prompting strategy, or a way you used Git.
-- What is one thing you would do differently next time you work with AI on a coding task?
-- In one or two sentences, describe how this project changed the way you think about AI generated code.
+I want to reuse the habit of recording a reproducible input, expected result, actual result, and test result before changing code. I would also ask AI to preserve assignment-provided values explicitly and review the diff before accepting a multi-file change. This project reinforced that AI-generated code can look plausible while hiding state, type, and integration bugs, so every suggestion needs human review and executable verification.
