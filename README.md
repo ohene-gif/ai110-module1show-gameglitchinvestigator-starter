@@ -52,12 +52,12 @@ collected 6 items
 
 tests\test_game_logic.py ......                                          [100%]
 
-============================== 6 passed in 0.03s ==============================
+============================== 8 passed in 0.07s ==============================
 ```
 
 ## 🚀 Stretch Features
 
-- [x] Advanced edge-case testing: empty and non-numeric input are tested with pytest, and difficulty ranges are tested against the starter settings.
+- [x] Advanced edge-case testing: empty, non-numeric, negative, and decimal inputs are tested with pytest, along with the starter difficulty ranges.
 - [x] Agent Workflow: the AI-assisted multi-file refactor and verification are documented in `ai_interactions.md`.
 - [x] Professional documentation and style: all functions in `logic_utils.py` have docstrings, and pycodestyle output is recorded in `ai_interactions.md`.
 - [x] Enhanced UI: `app.py` displays the active range in the main game and shows a Guess History table in the sidebar.

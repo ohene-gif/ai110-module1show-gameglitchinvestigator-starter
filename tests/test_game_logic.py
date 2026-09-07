@@ -34,6 +34,14 @@ def test_non_numeric_guess_is_rejected():
     )
 
 
+def test_negative_guess_is_parsed_as_a_number():
+    assert parse_guess("-3") == (True, -3, None)
+
+
+def test_decimal_guess_is_converted_to_an_integer():
+    assert parse_guess("49.9") == (True, 49, None)
+
+
 def test_difficulty_ranges_match_starter_settings():
     assert get_range_for_difficulty("Easy") == (1, 20)
     assert get_range_for_difficulty("Normal") == (1, 100)

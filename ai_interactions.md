@@ -14,7 +14,7 @@ Refactor the game logic into `logic_utils.py`, fix the incorrect numeric hints a
 
 **What did the agent do?**
 
-The agent implemented the four shared functions in `logic_utils.py`, updated `app.py` to import them, corrected numeric comparison and hint direction, synchronized difficulty state, reset New Game state, and added the Guess History sidebar table. It updated `tests/test_game_logic.py`, ran `python -m pytest`, and produced a passing result of 6 tests.
+The agent implemented the four shared functions in `logic_utils.py`, updated `app.py` to import them, corrected numeric comparison and hint direction, synchronized difficulty state, reset New Game state, and added the Guess History sidebar table. It updated `tests/test_game_logic.py`, ran `python -m pytest`, and produced a passing result of 8 tests after adding the advanced edge cases.
 
 **What did you have to verify or fix manually?**
 
@@ -30,6 +30,8 @@ I reviewed the diff and rejected an earlier suggestion to change the attempt lim
 |-----------|-------------|-------------------|--------------|----------------|
 | Empty input | Add pytest coverage for empty guesses. | `parse_guess("")` returns the expected validation error. | Yes | Empty input is a common form submission case. |
 | Non-numeric input | Add pytest coverage for invalid text guesses. | `parse_guess("not-a-number")` returns the expected validation error. | Yes | Users may type text instead of a number. |
+| Negative input | Add pytest coverage for negative-number guesses. | `parse_guess("-3")` returns a valid integer result. | Yes | Negative numbers test signed integer parsing. |
+| Decimal input | Add pytest coverage for decimal guesses. | `parse_guess("49.9")` returns integer `49`, matching the starter parser behavior. | Yes | Decimal input verifies the documented truncation behavior. |
 | Difficulty ranges | Add pytest coverage for all starter difficulty ranges. | Easy, Normal, and Hard return their defined ranges. | Yes | This protects the assignment-provided settings from accidental changes. |
 
 ---
